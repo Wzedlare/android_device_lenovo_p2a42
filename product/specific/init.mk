@@ -12,3 +12,5 @@ PRODUCT_PACKAGES += \
     init.qcom.factory.rc \
     init.qcom.sensors.sh \
     init.qcom.syspart_fixup.sh \
+    init.lenovo.common.rc \
+    init.lenovo.sensor.rc
