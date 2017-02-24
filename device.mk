@@ -44,6 +44,11 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     memtrack.msm8953
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd \
+    fingerprint.default
+
 # FM
 PRODUCT_PACKAGES += \
     FM2 \
@@ -89,6 +94,10 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8953
+
 # Live Display
 PRODUCT_PACKAGES += \
     libjni_livedisplay
@@ -104,6 +113,13 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw \
     libc2dcolorconvert
+
+# NFC
+PRODUCT_PACKAGES += \
+    com.android.nfc_extras \
+    NfcNci \
+    nfc_nci.bcm2079x.default \
+    Tag
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
