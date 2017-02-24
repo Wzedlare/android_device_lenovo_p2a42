@@ -15,43 +15,177 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/lenovo/p2a42
-COMMON_PATH := device/lenovo/p2a42/board
+# ANT
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
-# Define platform before including any common things
-include $(DEVICE_PATH)/PlatformConfig.mk
+# Architecture
+TARGET_BOARD_PLATFORM := msm8953
+TARGET_BOARD_SUFFIX := _64
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
 
-# Inherit common ARM64 board fragments
-include $(COMMON_PATH)/common/arm64/architecture.mk
-include $(COMMON_PATH)/common/arm64/binder.mk
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
 
-# Inherit common board fragments
-include $(COMMON_PATH)/common/bluetooth.mk
-include $(COMMON_PATH)/common/bootloader.mk
-include $(COMMON_PATH)/common/camera.mk
-include $(COMMON_PATH)/common/clang.mk
-include $(COMMON_PATH)/common/cpusets.mk
-include $(COMMON_PATH)/common/dlmalloc.mk
-include $(COMMON_PATH)/common/gps.mk
-include $(COMMON_PATH)/common/recovery.mk
-include $(COMMON_PATH)/common/sepolicy.mk
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# Inherit QCOM board fragments
-include $(COMMON_PATH)/qcom/bluetooth.mk
-include $(COMMON_PATH)/qcom/bootloader.mk
-include $(COMMON_PATH)/qcom/cne.mk
-include $(COMMON_PATH)/qcom/encryption.mk
-include $(COMMON_PATH)/qcom/fm.mk
-include $(COMMON_PATH)/qcom/gps.mk
-include $(COMMON_PATH)/qcom/per-mgr.mk
-include $(COMMON_PATH)/qcom/platform.mk
-include $(COMMON_PATH)/qcom/power.mk
-include $(COMMON_PATH)/qcom/ril.mk
-include $(COMMON_PATH)/qcom/sepolicy.mk
-include $(COMMON_PATH)/qcom/time.mk
+TARGET_USES_64_BIT_BINDER := true
 
-# Inherit device-specific board fragments
-include $(DEVICE_PATH)/board/specific/*.mk
+# Audio
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_SOURCE_TRACKING := true
+AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
+AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
+BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
-# Inherit the proprietary files
--include vendor/lenovo/p2a42/BoardConfigVendor.mk
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := msm8953
+
+ENABLE_CPUSETS := true
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_USE_BTNV := true
+QCOM_BT_USE_SMD_TTY := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lenovo/p2a42/bluetooth
+
+# Camera
+USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+TARGET_TS_MAKEUP := true
+
+# Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
+# Clang
+USE_CLANG_PLATFORM_BUILD := true
+
+# CNE / DPM
+BOARD_USES_QCNE := true
+TARGET_LDPRELOAD := libNimsWrap.so
+
+# Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_ION := true
+TARGET_USES_OVERLAY := true
+USE_OPENGL_RENDERER := true
+
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
+
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_INIT_VENDOR_LIB := libinit_p2a42
+TARGET_RECOVERY_DEVICE_MODULES := libinit_p2a42
+
+# FM
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+
+# GPS
+TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_GPS := true
+USE_DEVICE_SPECIFIC_LOC_API := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+
+# Kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/lenovo/p2a42/mkbootimg.mk
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000 zcache.enabled=1 androidboot.selinux=permissive
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_CONFIG := cyanogenmod_p2a42_defconfig
+TARGET_KERNEL_SOURCE := kernel/lenovo/msm8953/kernel
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_PREBUILT_KERNEL := device/lenovo/p2a42/Image.gz-dtb
+
+# Keymaster
+TARGET_PROVIDES_KEYMASTER := true
+
+# Media
+TARGET_USES_MEDIA_EXTENSIONS := true
+
+# Malloc
+MALLOC_IMPL := dlmalloc
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864        #    65536 * 1024 mmcblk0p39
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864    #    65536 * 1024 mmcblk0p40
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4294967296    #  4194304 * 1024 mmcblk0p54
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 25631374336 # 25030639 * 1024 mmcblk0p56
+BOARD_CACHEIMAGE_PARTITION_SIZE := 318767104      #   311296 * 1024 mmcblk0p53
+BOARD_FLASH_BLOCK_SIZE := 131072                  # (BOARD_KERNEL_PAGESIZE * 64)
+
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+
+# Peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# RIL
+TARGET_RIL_VARIANT := caf
+
+# QCOM support
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QC_TIME_SERVICES := true
+
+# Recovery
+TARGET_RECOVERY_FSTAB := device/lenovo/p2a42/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
+# Sensors
+USE_SENSOR_MULTI_HAL := true
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy
+
+# Wifi
+BOARD_HAS_QCOM_WLAN := true
+BOARD_HAS_QCOM_WLAN_SDK := true
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+HOSTAPD_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+TARGET_USES_WCNSS_CTRL := true
+TARGET_USES_QCOM_WCNSS_QMI := true
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_P2P := "p2p"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
