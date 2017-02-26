@@ -1,1 +1,2 @@
 add_lunch_combo cm_p2a42-userdebug
+add_lunch_combo lineage_p2a42-userdebug
