@@ -61,6 +61,7 @@ persist.demo.hdmirotationlock=false
 persist.hwc.enable_vds=1
 persist.hwc.mdpcomp.enable=true
 vidc.enc.dcvs.extra-buff-count=2 
+qemu.hw.mainkeys=0
 
 # Fingerprint
 persist.qfp=false

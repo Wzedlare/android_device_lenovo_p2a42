@@ -26,7 +26,7 @@ $(call inherit-product, device/lenovo/p2a42/device.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_p2a42
+PRODUCT_NAME := cm_p2a42
 PRODUCT_DEVICE := p2a42
 PRODUCT_BRAND := Lenovo
 PRODUCT_MODEL := Lenovo P2

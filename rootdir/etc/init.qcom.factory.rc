@@ -37,13 +37,6 @@ service srvmag_ffbm /system/bin/servicemanager
     disabled
     oneshot
 
-service gx_fpd_fastmmi /system/bin/gx_fpd
-     class core
-     user root
-     group system system
-     oneshot
-     disabled
-
 # Creating a scratch storage on /data for factory testing.
 on factory-fs
     mount tmpfs tmpfs /data
@@ -289,10 +282,6 @@ on mmi
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
 
-    # Goodix Fingerprint
-    chown system system /dev/goodix_fp
-    chmod 0644 /dev/goodix_fp 
-
     # Define default initial receive window size in segments.
     setprop net.tcp.default_init_rwnd 60
 
@@ -337,7 +326,6 @@ on mmi
     start qcomsysd
     start ptt_ffbm
     start tftp_server
-    start gx_fpd_fastmmi   
     start qseecomd
 
 on ffbm
