@@ -1,4 +1,9 @@
-# Lenovo P2a42 System Properties by [Incredible@OneTeam]
+#
+# system.prop for p2a42
+#
+
+# Art
+ro.sys.fw.dex2oat_thread_count=4
 
 # Audio
 af.fast_track_multiplier=2
@@ -7,23 +12,34 @@ audio.dolby.ds2.enabled=true
 audio.offload.buffer.size.kb=64
 audio.offload.gapless.enabled=true
 audio.offload.min.duration.secs=30
+audio.offload.multiple.enabled=false
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
+audio.offload.track.enable=false
 audio.offload.video=true
+audio.parser.ip.buffer.size=0
 audio.playback.mch.downsample=true
+audio.pp.asphere.enabled=false
 audio.safx.pbe.enabled=true
 audio_hal.period_size=192
-ro.qc.sdk.audio.fluencetype=none
 persist.audio.dirac.speaker=true
-persist.audio.fluence.voicecall=false
+persist.audio.fluence.speaker=false
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.speaker.prot.enable=false
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.ssr=false
+tunnel.audio.encode = false
 use.qti.sw.alac.decoder=true
 use.qti.sw.ape.decoder=true
 use.voice.path.for.pcm.voip=true
 voice.conc.fallbackpath=deep-buffer
 voice.playback.conc.disabled=true
+voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
 
 # Bluetooth
+bluetooth.hfp.client=1
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
@@ -37,87 +53,70 @@ ro.qualcomm.bluetooth.pbap=true
 ro.qualcomm.bt.hci_transport=smd
 
 # Camera
-camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.google.android.GoogleCamera
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 media.camera.ts.monotonic=0
-persist.camera.cpp.duplication=false
+vidc.dec.downscalar_height=1088
+vidc.dec.downscalar_width=1920
+vidc.enc.dcvs.extra-buff-count=2
+vidc.enc.disable_bframes=1
 
 # CNE
 persist.cne.feature=1
 
-# Dalvik
-dalvik.vm.heapgrowthlimit=384m
-dalvik.vm.heapmaxfree=8m
-dalvik.vm.heapminfree=512k
-dalvik.vm.heapsize=1024m
-dalvik.vm.heapstartsize=8m
-dalvik.vm.heaptargetutilization=0.75
-
 # Display
-debug.gralloc.enable_fb_ubwc=1
+dalvik.vm.heapsize=36m
+debug.egl.hw=0
 debug.enable.sglscale=1
+debug.gralloc.enable_fb_ubwc=1
 debug.mdpcomp.logs=0
+debug.sf.hw=0
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
-persist.hwc.enable_vds=1
 persist.hwc.mdpcomp.enable=true
-vidc.enc.dcvs.extra-buff-count=2 
+ro.opengles.version=196609
+ro.sf.lcd_density=400
 qemu.hw.mainkeys=0
 
 # Fingerprint
 persist.qfp=false
 
-# FM
-ro.fm.transmitter=false
-
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 
-# GPS
-persist.gps.qc_nlp_in_use=1
-persist.loc.nlp_name=com.qualcomm.location
-ro.gps.agps_provider=1
-
-# Hwui
-ro.hwui.texture_cache_size=72
-ro.hwui.layer_cache_size=48
-ro.hwui.path_cache_size=32
-ro.hwui.gradient_cache_size=1
-ro.hwui.drop_shadow_cache_size=6
-ro.hwui.r_buffer_cache_size=8
-ro.hwui.texture_cache_flushrate=0.4
-ro.hwui.text_small_cache_width=1024
-ro.hwui.text_small_cache_height=1024
-ro.hwui.text_large_cache_width=2048
-ro.hwui.text_large_cache_height=1024
-
 # Media
-mm.enable.smoothstreaming=true
+av.debug.disable.pers.cache=1
 media.aac_51_output_enabled=true
-vidc.enc.narrow.searchrange=1
-drm.service.enabled=true
+media.msm8956hw=0
+mm.enable.qcom_parser=196495
+mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
+persist.mm.sta.enable=0
+qcom.hw.aac.encoder=true
 
-# Perf
-ro.sys.fw.dex2oat_thread_count=4
-ro.sys.fw.use_trim_settings=true
-ro.am.reschedule_service=true
-ro.vendor.at_library=libqti-at.so
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.gt_library=libqti-gt.so
+# Netmgrd
+persist.data.mode=concurrent
+persist.data.netmgrd.qos.enable=true
+ro.use_data_netmgrd=true
 
-# Screen Setup
-ro.opengles.version=196609
-ro.sf.lcd_density=400
+# NITZ
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+
+# Qualcomm
+ro.qualcomm.cabl=0
 
 # Radio
 DEVICE_PROVISIONED=1
 persist.data.iwlan.enable=false
-persist.data.mode=concurrent
-persist.data.netmgrd.qos.enable=true
-persist.data.qmi.adb_logmask=0
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
-persist.logd.size.radio=4M
-persist.net.doxlat=true
 persist.radio.DROPSETENABLE=1
 persist.radio.apm_sim_not_pwdn=1
 persist.radio.custom_ecc=1
@@ -126,18 +125,32 @@ persist.radio.ignore_dom_time=5
 persist.radio.mt_sms_ack=20
 persist.radio.multisim.config=dsds
 persist.radio.rat_on=combine
-persist.radio.redir_party_num=1
 persist.radio.sib16_support=1
-persist.radio.NO_STAPA=1
 ril.subscription.types=NV,RUIM
+rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
-ro.ct.device.model=XMP-2016030
+ro.ct.device.model=XMP-2016060
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,22
-ro.telephony.default_cdma_sub=0
-ro.use_data_netmgrd=true
 service.qti.ims.enabled=1
 telephony.lteOnCdmaDevice=1,1
 
-# Wlan
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.gt_library=libqti-gt.so
+ro.vendor.at_library=libqti-at.so
+
+# QMI
+persist.data.qmi.adb_logmask=0
+
+# Service Restart
+ro.am.reschedule_service=true
+
+# Time
+persist.timed.enable=true
+
+# WIFI
 wifi.interface=wlan0
+
+# Wingtech ID
+ro.build.display.wtid=SW_S88553AA1_V060_M21_MP_XM

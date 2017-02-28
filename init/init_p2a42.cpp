@@ -1,6 +1,6 @@
 /*
-   Copyright (c) 2015, The Linux Foundation. All rights reserved.
-   Copyright (C) 2016 The CyanogenMod Project.
+   Copyright (c) 2015-2017 The Linux Foundation. All rights reserved.
+   Copyright (C) 2017 The LineageOS Project.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -26,7 +26,7 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 #include <fcntl.h>
 #include <stdio.h>
