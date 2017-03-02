@@ -278,7 +278,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary_lenovo.dat:system/etc/firmware/wlan/prima/WCNSS_wlan_dictionary_lenovo.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
-# Misc
+# Misc Binaries
 PRODUCT_PACKAGES += \
     cplay \
     hs20-osu-client \
@@ -288,3 +288,18 @@ PRODUCT_PACKAGES += \
     tinypcminfo \
     tinyplay \
     updater
+
+# Misc Libraries
+PRODUCT_PACKAGES += \
+    libext2fs \
+    libqcomfm_jni \
+    libbson \
+    libminui \
+    libcurl \
+    libext2_e2p \
+    libext2_uuid \
+    libmm-omxcore \
+    libext2_com_err \
+    libext2_blkid \
+    libextmedia_jni \
+    libfmjni
