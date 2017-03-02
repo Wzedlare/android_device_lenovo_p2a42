@@ -173,6 +173,9 @@ TARGET_RIL_VARIANT := caf
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 
+# Root
+WITH_SU=true
+
 # Sensor
 USE_SENSOR_MULTI_HAL := true
 

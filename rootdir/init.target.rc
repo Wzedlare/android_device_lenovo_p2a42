@@ -140,6 +140,11 @@ on boot
     chmod 0775 /data/misc/sensors
     start sensors
 
+#lenovo-sw weiweij added for file point access
+    chown system system /sys/class/power_supply/ext-charger/otg_usb_short
+    chmod 0666 /sys/class/power_supply/ext-charger/otg_usb_short
+#lenovo-sw weiweij added for file point access end
+
 service wcnss-service /system/bin/wcnss_service
     class main
     user system
@@ -178,6 +183,13 @@ service imscmservice /system/bin/imscmservice
 on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
     start imscmservice
+
+#lenovo-sw weiweij added for smart_charger fast charger switch dameon
+service smart_charger /system/bin/smart_charger
+    class  main
+    user root
+    seclabel u:r:smart_charger:s0
+#lenovo-sw weiweij added for smart_charger fast charger switch dameon end
 
 service ppd /system/vendor/bin/mm-pp-dpps
     class late_start
@@ -219,6 +231,21 @@ service adsprpcd /system/bin/adsprpcd
     user media
     group media
 
+service dts_configurator /system/bin/dts_configurator
+    class late_start
+    user system
+    group media audio
+    oneshot
+
+service dtseagleservice /system/bin/dts_eagle_service
+    class late_start
+    user system
+    group audio media
+    disabled
+
+on property:init.svc.dts_configurator=stopped
+    start dtseagleservice
+
 service hvdcp_opti /system/bin/hvdcp_opti
    class main
    user root
@@ -251,3 +278,4 @@ service mdtpd /system/vendor/bin/mdtpd
     class late_start
     user root
     group system radio drmrpc
+

@@ -166,33 +166,25 @@ on boot
     # bond0 used by FST Manager
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
-    # Notification LED
+    # OTLED
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/blue/brightness
 
-    # IR Blaster
-    chown system system /sys/class/leds/infrared/transmit
-    chown system system /sys/class/leds/infrared/brightness
+    # OTIRQ
+	chown system system /sys/bus/platform/devices/soc:fingerprint@0/irq_check
+	chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/irq_check
 
-    # Goodix Fingerprint
-    chown system system /dev/goodix_fp
-    chmod 0644 /dev/goodix_fp        
-    chmod 07777 /system/bin/gx_fpd    
+    # OTFingerprint
+    chmod 0755 /system/bin/vfmService
+    chmod 0660 /dev/vfsspi
+    chown system system /dev/vfsspi
+    mkdir /data/validity 0775 system system
+    mkdir /dev/validity 0775 system system
+    start fingerprintd
+on property:sys.listeners.registered=true
+    start vfmservice
 
-    setprop persist.sys.fp.vendor none
-    start gx_fpd
-
-    # xuchao,add the fp sensor infomation,20161108,start
-    on property:persist.sys.fp.vendor=switchf
-	setprop ro.boot.fpsensor fpc
-
-    on property:persist.sys.fp.vendor=goodix
-	setprop ro.boot.fpsensor gdx
-    # xuchao,add the fp sensor infomation,20161108,end
 
 # MSM specific files that need to be created on /data
 on post-fs-data
@@ -904,24 +896,31 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
 on charger
     setprop persist.sys.usb.config charging
 
+#lenovo-sw, yuqing1, added fingerprint daemon service, begin
+on property:vold.decrypt=trigger_restart_framework
+    class_start main
+    class_start late_start
+    start vfmservice
+#lenovo-sw, yuqing1, added fingerprint daemon service, end
+
+#lenovo-sw, yuqing1, added fingerprint daemon service, begin
+#synaptics fingerprint service
+service vfmservice /system/bin/vfmService
+    user system
+    group system
+    class main
+    disabled   
+
+#fingerpirntd
 service fingerprintd /system/bin/fingerprintd
     class late_start
-    socket fpce stream 0666 system system
-    user  system
-    group system sdcard_rw
-    system system
-    disabled
+    user system
+#lenovo-sw, yuqing1, added fingerprint daemon service, end
 
-service gx_fpd /system/bin/gx_fpd
-    class core
+#Begin, lenovo-sw ligh6 add for unlock service 2016-04-19
+service unlock-daemon /system/bin/unlockservice
+    class main
     user root
-    group system system
     disabled
-
-on property:persist.sys.fp.vendor=switchf
-    stop gx_fpd
-    setprop persist.sys.fp.vendor searchf
-    start fingerprintd  
-
-on property:persist.sys.fp.onstart=1
-    start fingerprintd
+    group root system
+#End, lenovo-sw ligh6 add for unlock service 2016-04-19
