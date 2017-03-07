@@ -54,6 +54,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_CONFIG := cyanogenmod_p2a42_defconfig
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8953/kernel
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/Image.gz-dtb
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # ANT
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
