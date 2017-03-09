@@ -22,8 +22,4 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 PRODUCT_NAME := cm_p2a42
 BOARD_VENDOR := Lenovo
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=Lenovo/p2a42/p2a42:6.0.1/MMB29M/V8.1.2.0.MBEMIDI:user/release-keys \
-    PRIVATE_BUILD_DESC="p2a42-user 6.0.1 MMB29M V8.1.2.0.MBEMIDI release-keys"
-
 PRODUCT_GMS_CLIENTID_BASE := android-lenovo
