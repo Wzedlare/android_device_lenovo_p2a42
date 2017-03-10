@@ -186,6 +186,14 @@ on boot
 on property:sys.listeners.registered=true
     start vfmservice
 
+#lenovo-sw wengjun1 add 20160504 begin
+    chown system system /sys/board_properties/tpd_glove_status
+    chown system system /sys/board_properties/tpd_suspend_status
+    chown system system /dev/rmi0
+    chmod 0664 /sys/board_properties/tpd_suspend_status
+    chmod 0664 /sys/board_properties/tpd_glove_status
+    chmod 0660 /dev/rmi0
+#lenovo-sw wengjun1 add 20160504 end
 
 # MSM specific files that need to be created on /data
 on post-fs-data
@@ -381,6 +389,12 @@ service ss_ramdump /system/bin/subsystem_ramdump
     group system
     disabled
 
+service qseeopt /system/bin/qseecom_opt_handler
+    class main
+    user system
+    disabled
+    oneshot
+
 on property:persist.sys.ssr.enable_debug=*
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
 
@@ -406,6 +420,7 @@ on property:persist.sys.ssr.enable_ramdumps=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
+    start qseeopt
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
@@ -451,6 +466,9 @@ on property:bluetooth.startbtsnoop=false
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start wcnss-service
+    class_start main
+    class_start late_start
+    start vfmservice
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -898,13 +916,6 @@ on charger
     setprop persist.sys.usb.config charging
 
 #lenovo-sw, yuqing1, added fingerprint daemon service, begin
-on property:vold.decrypt=trigger_restart_framework
-    class_start main
-    class_start late_start
-    start vfmservice
-#lenovo-sw, yuqing1, added fingerprint daemon service, end
-
-#lenovo-sw, yuqing1, added fingerprint daemon service, begin
 #synaptics fingerprint service
 service vfmservice /system/bin/vfmService
     user system
@@ -925,3 +936,28 @@ service unlock-daemon /system/bin/unlockservice
     disabled
     group root system
 #End, lenovo-sw ligh6 add for unlock service 2016-04-19
+
+#Lenovo-sw wuzb1 2016-08-11 drop vm caches
+on property:sys.vm.drop_caches=*
+    exec /system/bin/sync
+    write /proc/sys/vm/drop_caches ${sys.vm.drop_caches}
+
+# For extracting secure info from device and exporting to user mode
+# Wait until RPMB listener was well prepared from qseecomd
+service securecheck /sbin/securecheck
+    class core
+    critical
+    user root
+    group radio system
+    oneshot
+    disabled
+    seclabel u:r:securecheck:s0
+on property:sys.listeners.registered=true
+    start securecheck
+
+#Lenovo Begin, add nfcreset for Fac
+service nfcreset /system/bin/NfcReset
+    class main
+    disabled
+    oneshot
+#End lenovo
