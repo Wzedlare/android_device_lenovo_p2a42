@@ -142,6 +142,10 @@ PRODUCT_PACKAGES += \
     memtrack.msm8953 \
     libtinyxml
 
+# Doze
+PRODUCT_PACKAGES += \
+   OneTeamDoze
+
 # Ebtables
 PRODUCT_PACKAGES += \
     ebtables \
@@ -151,7 +155,8 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprint.default \
-    fingerprintd
+    fingerprintd \
+    fingerprint.msm8953
 
 # GPS
 PRODUCT_PACKAGES += \
