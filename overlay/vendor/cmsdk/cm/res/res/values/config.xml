@@ -33,7 +33,7 @@
 
          For example, a device support pulsating, RGB notification and
          battery LEDs would set this config to 11. -->
-    <integer name="config_deviceLightCapabilities">2</integer>
+    <integer name="config_deviceLightCapabilities">11</integer>
 
     <!-- Enable the option to check proximity sensor when deciding whether to
          turn the screen on
