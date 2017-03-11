@@ -46,6 +46,7 @@ persist.radio.NO_STAPA=1
 persist.sys.cfu_query=true
 persist.cne.subscription_aware=false
 persist.radio.start_ota_daemon=1
+service.qti.ims.enabled=1
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/config
