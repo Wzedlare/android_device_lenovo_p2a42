@@ -153,6 +153,13 @@ PRODUCT_PACKAGES += \
     fingerprintd \
     fingerprint.msm8953
 
+# FM
+PRODUCT_PACKAGES += \
+    FM2 \
+    libqcomfm_jni \
+    libfmjni \
+    qcom.fmradio
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8953
@@ -322,7 +329,6 @@ PRODUCT_PACKAGES += \
 # Misc Libraries
 PRODUCT_PACKAGES += \
     libext2fs \
-    libqcomfm_jni \
     libbson \
     libminui \
     libcurl \
@@ -331,5 +337,4 @@ PRODUCT_PACKAGES += \
     libmm-omxcore \
     libext2_com_err \
     libext2_blkid \
-    libextmedia_jni \
-    libfmjni
+    libextmedia_jni
