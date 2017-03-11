@@ -273,6 +273,28 @@ on boot
 on property:sys.listeners.registered=true
     start vfmservice
 
+#lenovo-sw, yuqing1, added fingerprint daemon service, begin
+#synaptics fingerprint service
+service vfmservice /system/bin/vfmService
+    user system
+    group system
+    class main
+    disabled   
+
+#fingerprintd
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+#lenovo-sw, yuqing1, added fingerprint daemon service, end
+
+#Begin, lenovo-sw ligh6 add for unlock service 2016-04-19
+service unlock-daemon /system/bin/unlockservice
+    class main
+    user root
+    disabled
+    group root system
+#End, lenovo-sw ligh6 add for unlock service 2016-04-19
+
 #lenovo-sw wengjun1 add 20160504 begin
     chown system system /sys/board_properties/tpd_glove_status
     chown system system /sys/board_properties/tpd_suspend_status
@@ -627,11 +649,6 @@ service cnd /system/bin/cnd
 service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
-
-service irsc_util /system/bin/irsc_util "/etc/sec_config"
-    class core
-    user root
-    oneshot
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -1061,50 +1078,3 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
 
 on charger
     setprop persist.sys.usb.config charging
-
-#lenovo-sw, yuqing1, added fingerprint daemon service, begin
-#synaptics fingerprint service
-service vfmservice /system/bin/vfmService
-    user system
-    group system
-    class main
-    disabled   
-
-#fingerpirntd
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-#lenovo-sw, yuqing1, added fingerprint daemon service, end
-
-#Begin, lenovo-sw ligh6 add for unlock service 2016-04-19
-service unlock-daemon /system/bin/unlockservice
-    class main
-    user root
-    disabled
-    group root system
-#End, lenovo-sw ligh6 add for unlock service 2016-04-19
-
-#Lenovo-sw wuzb1 2016-08-11 drop vm caches
-on property:sys.vm.drop_caches=*
-    exec /system/bin/sync
-    write /proc/sys/vm/drop_caches ${sys.vm.drop_caches}
-
-# For extracting secure info from device and exporting to user mode
-# Wait until RPMB listener was well prepared from qseecomd
-service securecheck /sbin/securecheck
-    class core
-    critical
-    user root
-    group radio system
-    oneshot
-    disabled
-    seclabel u:r:securecheck:s0
-on property:sys.listeners.registered=true
-    start securecheck
-
-#Lenovo Begin, add nfcreset for Fac
-service nfcreset /system/bin/NfcReset
-    class main
-    disabled
-    oneshot
-#End lenovo
