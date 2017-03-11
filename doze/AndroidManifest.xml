@@ -13,7 +13,7 @@
         android:targetSdkVersion="21"/>
 
     <application
-        android:label="XiaomiDoze"
+        android:label="OneTeamDoze"
         android:persistent="true">
 
         <receiver android:name="com.cyanogenmod.settings.doze.BootCompletedReceiver">
@@ -24,7 +24,7 @@
         </receiver>
 
         <service android:name="com.cyanogenmod.settings.doze.DozeService"
-                 android:permission="XiaomiDozeService">
+                 android:permission="OneTeamDozeService">
         </service>
 
         <activity
