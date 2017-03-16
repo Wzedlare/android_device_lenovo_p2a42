@@ -47,12 +47,9 @@ BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE :=  2048
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-TARGET_KERNEL_CONFIG := cyanogenmod_p2a42_defconfig
-TARGET_KERNEL_SOURCE := kernel/lenovo/msm8953/kernel
+TARGET_KERNEL_CONFIG := lineageos_mido_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8953
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/Image.gz-dtb
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
@@ -72,7 +69,7 @@ AUDIO_FEATURE_ENABLED_NT_PAUSE_TIMEOUT := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
+#AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
 
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
@@ -118,6 +115,7 @@ USE_OPENGL_RENDERER := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(LOCAL_PATH)/android_filesystem_config.h
 
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
@@ -134,9 +132,6 @@ TARGET_PROVIDES_KEYMASTER := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# Malloc
-MALLOC_IMPL := dlmalloc
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -192,3 +187,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,kuntao,kuntao_row
+
+# Don't use .dat system
+BLOCK_BASED_OTA := false
+

@@ -388,7 +388,6 @@
         <path name="compress-offload-playback2" />
     </path>
 
-
     <path name="compress-offload-playback3">
         <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia10" value="1" />
     </path>
@@ -968,7 +967,7 @@
     </path>
 
     <path name="wsa-speaker-and-line">
-        <path name="wsa-speaker" />
-        <path name="headphones" />
+          <path name="wsa-speaker-and-headphones" />
     </path>
+
 </mixer>
