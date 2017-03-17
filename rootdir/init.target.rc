@@ -126,6 +126,10 @@ service audiod /system/bin/audiod
 on boot
     start rmt_storage
     insmod /system/lib/modules/adsprpc.ko
+#lenovo-sw weiweij added for file point access
+    chown system system /sys/class/power_supply/ext-charger/otg_usb_short
+    chmod 0666 /sys/class/power_supply/ext-charger/otg_usb_short
+#lenovo-sw weiweij added for file point access end
 
 service wcnss-service /system/bin/wcnss_service
     class main
