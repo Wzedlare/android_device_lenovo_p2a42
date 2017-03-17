@@ -88,6 +88,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+    $(LOCAL_PATH)/audio/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
     $(LOCAL_PATH)/audio/capability.xml:system/etc/capability.xml \
     $(LOCAL_PATH)/audio/default_volume_tables.xml:system/etc/default_volume_tables.xml \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
@@ -109,8 +111,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    $(LOCAL_PATH)/audio/speaker.ftcfg:system/etc/speaker.ftcfg \
     $(LOCAL_PATH)/audio/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/acdbdata:system/etc/acdbdata \
+    $(LOCAL_PATH)/audio/wfdconfig.xml:system/etc/wfdconfig.xml \
+    $(LOCAL_PATH)/audio/wfdconfigsink.xml:system/etc/wfdconfigsink.xml \
     $(LOCAL_PATH)/audio/drc/drc_cfg_5.1.txt:system/etc/drc/drc_cfg_5.1.txt \
     $(LOCAL_PATH)/audio/drc/drc_cfg_AZ.txt:system/etc/drc/drc_cfg_AZ.txt \
     $(LOCAL_PATH)/audio/surround_sound_3mic/surround_sound_rec_5.1.cfg:system/etc/surround_sound_3mic/surround_sound_rec_5.1.cfg \
