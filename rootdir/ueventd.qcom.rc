@@ -48,6 +48,10 @@
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
 
+# lenovo-sw zhangrc2 change NXP SmartPA mode begin
+/dev/i2c_smartpa              0660   media      media
+# lenovo-sw zhangrc2 change NXP SmartPA mode end
+
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
 
