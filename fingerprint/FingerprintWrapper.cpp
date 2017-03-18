@@ -17,10 +17,7 @@
 //#define LOG_NDEBUG 0
 #define LOG_TAG "FingerprintWrapper"
 
-#include <dlfcn.h>
-
 #include <cutils/log.h>
-#include <cutils/properties.h>
 
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
@@ -41,50 +38,12 @@ static union {
     const hw_module_t *hw_module;
 } vendor;
 
-static int load(const char *path,
-        const struct hw_module_t **pHmi)
-{
-    int status = 0;
-    void *handle = NULL;
-    struct hw_module_t *hmi = NULL;
-
-    handle = dlopen(path, RTLD_NOW);
-    if (handle == NULL) {
-        status = -EINVAL;
-        goto done;
-    }
-
-    hmi = (struct hw_module_t *)dlsym(handle,
-        HAL_MODULE_INFO_SYM_AS_STR);
-    if (hmi == NULL) {
-        status = -EINVAL;
-        goto done;
-    }
-
-    hmi->dso = handle;
-
-    done:
-    *pHmi = hmi;
-
-    return status;
-}
-
 static bool ensure_vendor_module_is_loaded(void)
 {
     android::Mutex::Autolock lock(vendor_mutex);
 
     if (!vendor.module) {
-
-    int rv;
-    char vend [PROPERTY_VALUE_MAX];
-    property_get("sys.fp.vendor", vend, NULL);
-
-
-	if (!strcmp(vend, "goodix")) {
-	    rv = load("/system/lib64/hw/fingerprint.goodix.so", &vendor.hw_module);
-	} else {
-            rv = load("/system/lib64/hw/fingerprint.searchf.so", &vendor.hw_module);
-	}
+        int rv = hw_get_module_by_class("fingerprint", "vendor", &vendor.hw_module);
         if (rv) {
             ALOGE("failed to open vendor module, error %d", rv);
             vendor.module = NULL;
@@ -267,4 +226,4 @@ fingerprint_module_t HAL_MODULE_INFO_SYM = {
         .dso = NULL, /* remove compilation warnings */
         .reserved = {0}, /* remove compilation warnings */
     },
-}; 
+};

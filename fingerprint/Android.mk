@@ -22,7 +22,7 @@ LOCAL_SRC_FILES := \
     FingerprintWrapper.cpp
 
 LOCAL_SHARED_LIBRARIES := \
-    libhardware liblog libcutils
+    libhardware liblog
 
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE := fingerprint.msm8953
