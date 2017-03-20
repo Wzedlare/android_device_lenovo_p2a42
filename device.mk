@@ -166,9 +166,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprint.default \
-    fingerprintd \
-    fingerprint.msm8953
+    fingerprintd
 
 # FM
 PRODUCT_PACKAGES += \
@@ -271,18 +269,18 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.power.rc \
+    init.qcom.common.rc \
     init.qcom.rc \
+    init.qcom.sensor.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
     init.target.rc \
-    ueventd.qcom.rc \
-    init.qcom.sensor.rc \
-    init.qcom.common.rc
+    ueventd.qcom.rc
 
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh
+    init.qcom.bt.sh \
+    init.qcom.post_boot.sh
 
 # RIL
 PRODUCT_PACKAGES += \
