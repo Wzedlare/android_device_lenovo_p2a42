@@ -282,7 +282,4 @@
          correctly use them when installed on your device.  Otherwise, keep this disabled
          so that applications can still use their own mechanisms. -->
     <bool name="config_enableAutoPowerModes">true</bool>
-
-    <!-- Disable button backlight settings. -->
-    <integer name="config_buttonBrightnessSettingDefault">0</integer>
 </resources>
