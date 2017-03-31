@@ -1,0 +1,9 @@
+# Fast charger
+type fast_charger_sw, domain;
+type fast_charger_sw_exec, exec_type, file_type;
+
+init_daemon_domain(fast_charger_sw)
+
+
+
+

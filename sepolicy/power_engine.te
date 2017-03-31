@@ -1,0 +1,9 @@
+# power_engine daemon
+type power_engine, domain;
+type power_engine_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(power_engine)
+
+#============= power_engine ==============
+allow power_engine sysfs_devices_system_cpu:file write;

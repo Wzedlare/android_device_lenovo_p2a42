@@ -1,0 +1,23 @@
+/system/bin/power_engine					u:object_r:power_engine_exec:s0
+
+/data/cam_socket.*						u:object_r:camera_socket:s0
+
+# tfa9890
+/dev/i2c-4							u:object_r:audio_device:s0
+
+# NFC
+/dev/bcm2079x							u:object_r:nfc_device:s0
+
+/dev/block/bootdevice/by-name/tunning				u:object_r:modem_efs_partition_device:s0
+
+## Audio
+/dev/i2c_smartpa(/.*)?     		 	                u:object_r:audio_device:s0
+
+# fast_charger_sw
+/system/bin/fast_charger_sw 					u:object_r:fast_charger_sw_exec:s0
+
+# fingerprint
+/dev/validity                                                         u:object_r:fingerprintd_socket:s0
+/data/validity(/.*)?                                                  u:object_r:fingerprintd_data_file:s0
+/data/system/users/0/fpdata(/.*)?                                     u:object_r:fingerprintd_data_file:s0
+/sys/devices/soc.0/fingerprint.67(/.*)?                               u:object_r:fingerprintd_sysfs:s0
