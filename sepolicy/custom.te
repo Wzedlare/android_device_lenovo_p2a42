@@ -8,9 +8,6 @@ allow init sdcardd_exec:file getattr;
 #============= system_server ==============
 allow system_server persist_file:file { read write };
 
-#============= themeservice_app ==============
-allow themeservice_app network_management_service:service_manager find;
-
 #============= time_daemon ==============
 allow time_daemon persist_file:dir search;
 
