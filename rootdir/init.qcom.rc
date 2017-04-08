@@ -55,10 +55,6 @@ on init
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
-    chown system system /sys/class/power_supply/ext-charger/fast_charger_is_engineermode
-    chown system system /sys/class/power_supply/ext-charger/otg_usb_short
-    chmod 0664 /sys/class/power_supply/ext-charger/fast_charger_is_engineermode
-    chmod 0666 /sys/class/power_supply/ext-charger/otg_usb_short
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -197,59 +193,13 @@ on boot
     chown root system /sys/kernel/dload/emmc_dload
     chmod 0660 /sys/kernel/dload/emmc_dload
 
-
-#begin lenovo add by wengjun1@lenovo.com
-    chown system system /sys/board_properties/tpd_suspend_status
-    chown system system /sys/board_properties/tpd_glove_status
-    chown system system /dev/rmi0
-    chmod 0664 /sys/board_properties/tpd_suspend_status
-    chmod 0664 /sys/board_properties/tpd_glove_status
-    chmod 0660 /dev/rmi0
-#end lenovo add by wengjun1@lenovo.com
-
-    chmod 0755 /system/bin/vfmService
-    chmod 0660 /dev/vfsspi
-    chown system system /dev/vfsspi
-    mkdir /data/validity 0775 system system
-    mkdir /dev/validity 0775 system system
-    chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/shutdown
-    chown system system /sys/bus/platform/devices/soc:fingerprint@0/shutdown
-     tart fingerprintd
-
-on property:sys.listeners.registered=true
-     start vfmservice
-
-#lenovo-sw weiweij added for fast_charger_sw fast charger switch dameon
-service fast_charger_sw /system/bin/fast_charger_sw
-    class  main
-    user root
-    seclabel u:r:fast_charger_sw:s0
-#lenovo-sw weiweij added for fast_charger_sw fast charger switch dameon end
-
-#lenovo-sw, chenzz3, added fingerprint daemon service, begin
-#synaptics fingerprint service
-service vfmservice /system/bin/vfmService
-    user system
-    group system
-    class main
-    disabled
-
-#fingerpirntd
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-#lenovo-sw, chenzz3, added fingerprint daemon service, end
-
 # msm specific files that need to be created on /data
 on post-fs-data
     #Create directories for Fingerprint
-    mkdir /data/validity 0770 system system
-
-    # Change the ownership of the charging LED interface
-    chown system system /sys/class/leds/rgbled/brightness
-    chmod 0664 /sys/class/leds/rgbled/brightness
-    chown system system /sys/class/leds/rgbled/trigger
-    chmod 0664 /sys/class/leds/rgbled/trigger
+    mkdir /data/misc/stargate 0770 system system
+    mkdir /data/misc/stargate/bg_estimation 0770 system system
+    mkdir /data/misc/stargate/calib_test 0770 system system
+    mkdir /data/misc/stargate/database 0770 system system
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
@@ -519,7 +469,6 @@ on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
     start wcnss-service
     start cnss_diag
-    start vfmservice
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -575,13 +524,6 @@ service fmhal_service /system/bin/fmhal_service
     user bluetooth
     group bluetooth net_bt_admin net_admin
     disabled
-
-# FM
-on property:hw.fm.init=0
-      write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
-
-on property:hw.fm.init=1
-     write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
 
 service config_bt_addr /system/bin/btnvtool -O
     class core
@@ -1010,29 +952,6 @@ service cs-post-boot /system/bin/sh /persist/coresight/qdss.agent.sh
     disabled
     oneshot
 
-
-#begin lenovo-sw,linzb2 20150428,modify for support modem ramdump 
-service ss_ramdump /system/bin/subsystem_ramdump 2
-    class main
-    user root
-    group root
-    disabled
-#end lenovo-sw,linzb2 20150428,modify for support modem ramdump 
-
-on property:persist.sys.ssr.restart_level=*
-    start ssr_setup
-
-#begin lenovo-sw,linzb2 20150428,modify for support modem ramdump 
-on property:persist.sys.dloadmode.config=1
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
-    mkdir /data/ramdump 770 system system
-    start ss_ramdump
-
-on property:persist.sys.dloadmode.config=0
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
-    stop ss_ramdump
-#end lenovo-sw,linzb2 20150428,modify for support modem ramdump
-
 on property:sys.boot_completed=1
     start cs-post-boot
 
@@ -1085,4 +1004,3 @@ on property:vold.decrypt=trigger_restart_min_framework
 
 on property:vold.decrypt=trigger_restart_framework
     restart time_daemon
-

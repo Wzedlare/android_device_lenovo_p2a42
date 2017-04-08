@@ -1,2 +1,0 @@
-# check sound card status
-allow mediaserver audiod:binder call;
