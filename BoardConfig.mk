@@ -114,6 +114,9 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
+# Lights		
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
@@ -163,11 +166,6 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-TARGET_USES_WCNSS_CTRL := true
-TARGET_USES_QCOM_WCNSS_QMI := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,P2A42,kuntao,kuntao_row,p2c72,P2c72,P2C72,P2
-
-# Don't compile system with .dat
-BLOCK_BASED_OTA := false
