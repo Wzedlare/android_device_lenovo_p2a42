@@ -1126,9 +1126,10 @@ case "$target" in
                         #if this directory is present, it means that a
                         #1200p panel is connected to the device.
                         dir="/sys/bus/i2c/devices/3-0038"
-                        if [ ! -d "$dir" ]; then
-                              start hbtp
-                        fi
+                        # lenovo-sw wengjun1 modify for remove hbtp
+                        # if [ ! -d "$dir" ]; then
+                              # start hbtp
+                        # fi
                         ;;
                 esac
 
@@ -1310,6 +1311,9 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpufreq/interactive/use_migration_notif
                 echo 200000 > /proc/sys/kernel/sched_freq_inc_notify
                 echo 200000 > /proc/sys/kernel/sched_freq_dec_notify
+
+                # chenyb1 Log kernel wake-up source
+                echo 1 > /sys/module/msm_show_resume_irq/parameters/debug_mask
 
                 # Set Memory parameters
                 configure_memory_parameters

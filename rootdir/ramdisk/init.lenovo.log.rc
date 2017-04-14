@@ -1,0 +1,132 @@
+
+on boot
+    symlink /data/local /local
+    mkdir /data/local/log 0771 system system
+    mkdir /data/local/log/aplog 0777 system system
+    restorecon /system/bin  
+
+on property:sys.lenovo.remove.diag=true
+    rm /dev/diag
+
+#add for aplog service
+#yexh1 service tcplog /system/xbin/tcpdump -s 1500 -w /local/log/aplog/tcp -C 1 -W 6 -i any host not 192.168.100.2 and host not 127.0.0.1
+service tcplog /system/bin/tcplog.sh
+    class main
+    disabled
+    oneshot
+
+#yexh1 service mainlog /system/bin/logcat -r2048 -n 8 -v threadtime -f /local/log/aplog/logcat
+service mainlog /system/bin/mainlog.sh
+    class main
+    oneshot
+
+service eventslog /system/bin/eventslog.sh
+    class main
+    disabled
+    oneshot
+
+service qxdmlog /system/bin/qxdmlog.sh
+    class main
+    disabled
+    oneshot
+
+#yexh1 service radiolog /system/bin/logcat -r2048 -b radio -n 8 -v time -f /local/log/aplog/radio "AT:S *:V"
+service radiolog /system/bin/radiolog.sh
+    class main
+ #   user system
+ #   group system root log
+    disabled
+    oneshot
+
+#yexh1 service dmesglog /system/bin/dmesglog.sh
+service kernellog /system/bin/kernellog.sh
+    class main
+    disabled
+    oneshot
+    
+#yexh1
+service lastkmsg /system/bin/lastkmsg.sh
+    class main
+    disabled
+    oneshot
+
+  
+service triggerlenovolog /system/bin/trigger.lenovo.log.sh
+   class core
+    oneshot
+
+#yexh1 service custom-setup /system/bin/init.lenovo.sh
+service lenovolog /system/bin/init.lenovo.log.sh
+    class main
+    disabled
+    oneshot
+
+service am_loglimit /system/bin/am_loglimit.sh
+    class main
+    disabled
+    oneshot
+
+
+#move to trigger.lenovo.log.sh
+on property:sys.boot_completed=1
+    start tzdbg
+#start triggerlenovolog
+
+#yexh1 service copyaplog /system/bin/sh /system/bin/copy_aplog.sh
+service savelog /system/bin/sh /system/bin/savelog.sh
+    class main
+    disabled
+    oneshot
+
+service am_savelog /system/bin/am_savelog.sh
+    class main
+    disabled
+    oneshot
+
+service compresslog /system/bin/compresslog.sh
+    class main
+    disabled
+    oneshot
+
+service am_compresslog /system/bin/am_compresslog.sh
+    class main
+    disabled
+    oneshot
+
+#quebs2 add 2014-09-22 begin,for tzdbg log output
+#service tzdbg /system/bin/tzbspdebug.sh
+#    class main
+#    user system
+#    disabled
+#    oneshot
+#quebs2 add 2014-09-22 end,for tzdbg log output
+
+#quebs2 add 2015-05-22 begin,for qsee TA log output
+service qsee_log /system/bin/qsee_log.sh
+    class main
+    user system
+    disabled
+    oneshot
+
+service qsee_bsp_log /system/bin/qsee_bsp_log.sh
+    class main
+    user system
+    disabled
+    oneshot
+
+#quebs2 add 2014-05-22 end,for qsee TA log output
+
+on property:persist.sys.dloadmode.config=1
+    write /sys/module/msm_poweroff/parameters/emergent_restart 1
+    write /sys/module/msm_poweroff/parameters/download_mode 1
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level related
+# in passion project, we use MBN solution, if the sim card is switched, it will cause the modem crash.
+# we set modem's level from system to related.
+
+on property:persist.sys.dloadmode.config=0
+    write /sys/module/msm_poweroff/parameters/download_mode 0
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level related

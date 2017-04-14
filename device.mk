@@ -175,10 +175,6 @@ PRODUCT_PACKAGES += \
     libfmjni \
     qcom.fmradio
 
-# Fs_config
-PRODUCT_PACKAGES += \
-    fs_config_files
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8953 \
@@ -206,10 +202,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics_dsx_i2c.kl:system/usr/keylayout/synaptics_dsx_i2c.kl \
     $(LOCAL_PATH)/keylayout/synaptics_dsxv26.kl:system/usr/keylayout/synaptics_dsxv26.kl \
     $(LOCAL_PATH)/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
-
-# Libshims
-PRODUCT_PACKAGES += \
-    libshims_ims
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -266,22 +258,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libjson
 
-# Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.qcom.common.rc \
-    init.qcom.rc \
-    init.qcom.sensor.rc \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
-    init.target.rc \
-    ueventd.qcom.rc
-
-PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.post_boot.sh
-
 # RIL
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
@@ -320,7 +296,6 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
 
@@ -361,3 +336,87 @@ PRODUCT_PACKAGES += \
     libext2_com_err \
     libext2_blkid \
     libextmedia_jni
+
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/ramdisk/fstab.qcom:root/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.class_main.sh:root/init.class_main.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.lenovo.common.rc:root/init.lenovo.common.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.lenovo.crash.rc:root/init.lenovo.crash.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.lenovo.log.rc:root/init.lenovo.log.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.lenovo.sensor.rc:root/init.lenovo.sensor.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.mdm.sh:root/init.mdm.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.mmi.usb.rc:root/init.mmi.usb.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.mmi.usb.sh:root/init.mmi.usb.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.msm.usb.configfs.rc:root/init.msm.usb.configfs.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.oem.hw.sh:root/init.oem.hw.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.factory.rc:root/init.qcom.factory.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.sensors.sh:root/init.qcom.sensors.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.sh:root/init.qcom.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
+    $(LOCAL_PATH)/rootdir/ramdisk/init.target.rc:root/init.target.rc \
+    $(LOCAL_PATH)/rootdir/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
+
+# Binary Scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/bin/am_compresslog.sh:system/bin/am_compresslog.sh \
+    $(LOCAL_PATH)/rootdir/bin/am_diag_done.sh:system/bin/am_diag_done.sh \
+    $(LOCAL_PATH)/rootdir/bin/am_loglimit.sh:system/bin/am_loglimit.sh \
+    $(LOCAL_PATH)/rootdir/bin/am_savelog.sh:system/bin/am_savelog.sh \
+    $(LOCAL_PATH)/rootdir/bin/compresslog.sh:system/bin/compresslog.sh \
+    $(LOCAL_PATH)/rootdir/bin/copy_exp.sh:system/bin/copy_exp.sh \
+    $(LOCAL_PATH)/rootdir/bin/diag_clear.sh:system/bin/diag_clear.sh \
+    $(LOCAL_PATH)/rootdir/bin/diag_clear_orig.sh:system/bin/diag_clear_orig.sh \
+    $(LOCAL_PATH)/rootdir/bin/diag_kernel.sh:system/bin/diag_kernel.sh \
+    $(LOCAL_PATH)/rootdir/bin/diag_result.sh:system/bin/diag_result.sh \
+    $(LOCAL_PATH)/rootdir/bin/diag_system.sh:system/bin/diag_system.sh \
+    $(LOCAL_PATH)/rootdir/bin/emmc_ffu.sh:system/bin/emmc_ffu.sh \
+    $(LOCAL_PATH)/rootdir/bin/emmc_ffu_15.sh:system/bin/emmc_ffu_15.sh \
+    $(LOCAL_PATH)/rootdir/bin/eventslog.sh:system/bin/eventslog.sh \
+    $(LOCAL_PATH)/rootdir/bin/init.lenovo.crash.sh:system/bin/init.lenovo.crash.sh \
+    $(LOCAL_PATH)/rootdir/bin/init.lenovo.log.sh:system/bin/init.lenovo.log.sh \
+    $(LOCAL_PATH)/rootdir/bin/init.mmi.touch.sh:system/bin/init.mmi.touch.sh \
+    $(LOCAL_PATH)/rootdir/bin/kernellog.sh:system/bin/kernellog.sh \
+    $(LOCAL_PATH)/rootdir/bin/last_dmsglog.sh:system/bin/last_dmsglog.sh \
+    $(LOCAL_PATH)/rootdir/bin/last_mainlog.sh:system/bin/last_mainlog.sh \
+    $(LOCAL_PATH)/rootdir/bin/lastkmsg.sh:system/bin/lastkmsg.sh \
+    $(LOCAL_PATH)/rootdir/bin/lenovo_dumpsys.sh:system/bin/lenovo_dumpsys.sh \
+    $(LOCAL_PATH)/rootdir/bin/mainlog.sh:system/bin/mainlog.sh \
+    $(LOCAL_PATH)/rootdir/bin/mv_files.sh:system/bin/mv_files.sh \
+    $(LOCAL_PATH)/rootdir/bin/powerlog.sh:system/bin/powerlog.sh \
+    $(LOCAL_PATH)/rootdir/bin/qsee_bsp_log.sh:system/bin/qsee_bsp_log.sh \
+    $(LOCAL_PATH)/rootdir/bin/qsee_log.sh:system/bin/qsee_log.sh \
+    $(LOCAL_PATH)/rootdir/bin/qxdmlog.sh:system/bin/qxdmlog.sh \
+    $(LOCAL_PATH)/rootdir/bin/radiolog.sh:system/bin/radiolog.sh \
+    $(LOCAL_PATH)/rootdir/bin/savelog.sh:system/bin/savelog.sh \
+    $(LOCAL_PATH)/rootdir/bin/savelog_ddr_emmc.sh:system/bin/savelog_ddr_emmc.sh \
+    $(LOCAL_PATH)/rootdir/bin/setup.lenovo.crash.sh:system/bin/setup.lenovo.crash.sh \
+    $(LOCAL_PATH)/rootdir/bin/tcplog.sh:system/bin/tcplog.sh \
+    $(LOCAL_PATH)/rootdir/bin/testmodelog.sh:system/bin/testmodelog.sh \
+    $(LOCAL_PATH)/rootdir/bin/trigger.lenovo.log.sh:system/bin/trigger.lenovo.log.sh \
+    $(LOCAL_PATH)/rootdir/bin/tzbspdebug.sh:system/bin/tzbspdebug.sh
+
+# Configuration Scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/hcidump.sh:system/etc/hcidump.sh \
+    $(LOCAL_PATH)/rootdir/etc/hsic.control.bt.sh:system/etc/hsic.control.bt.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.crda.sh:system/etc/init.crda.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.lenovo.persist.sh:system/etc/init.lenovo.persist.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:system/etc/init.qcom.audio.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.debug.sh:system/etc/init.qcom.debug.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:system/etc/init.qcom.uicc.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.qti.ims.sh:system/etc/init.qti.ims.sh \
+    $(LOCAL_PATH)/rootdir/etc/qca6234-service.sh:system/etc/qca6234-service.sh

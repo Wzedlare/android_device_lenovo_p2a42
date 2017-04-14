@@ -1,0 +1,2 @@
+type macaddr_data_file, file_type;
+type sysfs_fast_charger_sw, fs_type, sysfs_type;

@@ -16,8 +16,6 @@
 
 LOCAL_PATH := device/lenovo/p2a42
 
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -102,7 +100,6 @@ USE_OPENGL_RENDERER := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(LOCAL_PATH)/android_filesystem_config.h
 
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
@@ -116,9 +113,6 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
-
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -145,7 +139,7 @@ TARGET_POWERHAL_VARIANT := qcom
 TARGET_RIL_VARIANT := caf
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/ramdisk/fstab.qcom
 
 # Sensor
 USE_SENSOR_MULTI_HAL := true
@@ -169,6 +163,11 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+TARGET_USES_WCNSS_CTRL := true
+TARGET_USES_QCOM_WCNSS_QMI := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,kuntao,kuntao_row,p2c72,P2c72,P2C72
+TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,P2A42,kuntao,kuntao_row,p2c72,P2c72,P2C72,P2
+
+# Don't compile system with .dat
+BLOCK_BASED_OTA := false
