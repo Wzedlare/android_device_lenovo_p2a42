@@ -289,4 +289,15 @@
     <!-- Boolean indicating whether Hotspot 2.0/Passpoint and ANQP queries is enabled -->
     <bool translatable="false" name="config_wifi_hotspot2_enabled">true</bool>
 
+    <!-- Flag specifying whether VoLTE is available on device -->
+    <bool name="config_device_volte_available">true</bool>
+
+    <!-- Flag specifying whether VoLTE should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_volte_available">true</bool>
+
+
+    <!-- Flag specifying whether WFC over IMS is available on device -->
+    <bool name="config_device_wfc_ims_available">true</bool>
 </resources>
