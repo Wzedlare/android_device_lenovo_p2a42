@@ -285,4 +285,8 @@
 
     <!-- Disable button backlight settings. -->
     <integer name="config_buttonBrightnessSettingDefault">0</integer>
+
+    <!-- Boolean indicating whether Hotspot 2.0/Passpoint and ANQP queries is enabled -->
+    <bool translatable="false" name="config_wifi_hotspot2_enabled">true</bool>
+
 </resources>
