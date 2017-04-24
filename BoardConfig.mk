@@ -16,6 +16,8 @@
 
 LOCAL_PATH := device/lenovo/p2a42
 
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -79,6 +81,7 @@ TARGET_TS_MAKEUP := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := /sys/class/leds/rgb/brightness
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
