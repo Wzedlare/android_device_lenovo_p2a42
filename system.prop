@@ -60,6 +60,7 @@ camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 # Cne
 persist.cne.feature=1
 persist.dpm.feature=1
+persist.sys.cnd.iwlan=1
 
 # Coresight
 persist.debug.coresight.config=stm-events
@@ -81,7 +82,7 @@ ro.qualcomm.cabl=0
 ro.sf.lcd_density=400
 qemu.hw.mainkeys=0
 
-#Enable B service adj transition by default
+# Enable B service adj transition by default
 ro.sys.fw.bservice_enable=true
 ro.sys.fw.bservice_limit=5
 ro.sys.fw.bservice_age=5000
@@ -92,13 +93,17 @@ persist.qfp=false
 # Fm
 ro.fm.transmitter=false
 
-# Frp
-ro.frp.pst=/dev/block/bootdevice/by-name/config
-
 # GPS
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
+
+# IMS
+persist.radio.jbims=1
+persist.radio.RATE_ADAPT_ENABLE=1
+persist.radio.VT_ENABLE=1
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.VT_USE_MDM_TIME=0
 
 # Media
 media.msm8956hw=0
