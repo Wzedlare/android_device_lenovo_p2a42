@@ -183,3 +183,6 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,P2A42,kuntao,kuntao_row,p2c72,P2c72,P2C72,P2
+
+# Remove unnecessary app(s) for unofficial LineageOS builds.
+$(shell rm -rf packages/apps/CMUpdater)
