@@ -128,6 +128,9 @@ TARGET_PROVIDES_KEYMASTER := true
 # Lights		
 TARGET_PROVIDES_LIBLIGHT := true
 
+# Malloc
+MALLOC_SVELTE := true
+
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
