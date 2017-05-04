@@ -128,7 +128,7 @@ PRODUCT_COPY_FILES += \
 
 # Browser
 PRODUCT_PACKAGES += \
-    Browser
+    Jelly
 
 # Camera
 PRODUCT_PACKAGES += \
