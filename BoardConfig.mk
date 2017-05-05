@@ -81,7 +81,7 @@ TARGET_TS_MAKEUP := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BACKLIGHT_PATH := /sys/class/leds/rgb/brightness
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
@@ -124,9 +124,6 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
-
-# Lights		
-TARGET_PROVIDES_LIBLIGHT := true
 
 # Malloc
 MALLOC_SVELTE := true
