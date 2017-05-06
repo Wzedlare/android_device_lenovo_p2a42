@@ -174,13 +174,6 @@ on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
     start imscmservice
 
-#lenovo-sw weiweij added for smart_charger fast charger switch dameon
-service smart_charger /system/bin/smart_charger
-    class  main
-    user root
-    seclabel u:r:smart_charger:s0
-#lenovo-sw weiweij added for smart_charger fast charger switch dameon end
-
 service ppd /system/vendor/bin/mm-pp-dpps
     class late_start
     disabled
