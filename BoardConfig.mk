@@ -189,3 +189,4 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,kuntao,kuntao_row
+BLOCK_BASED_OTA := false
