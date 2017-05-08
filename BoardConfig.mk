@@ -16,8 +16,6 @@
 
 LOCAL_PATH := device/lenovo/p2a42
 
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -81,7 +79,6 @@ TARGET_TS_MAKEUP := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
@@ -125,8 +122,8 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
-# Malloc
-MALLOC_SVELTE := true
+# Lights		
+TARGET_PROVIDES_LIBLIGHT := true
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -179,7 +176,7 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,P2A42,kuntao,kuntao_row,p2c72,P2c72,P2C72,P2
+TARGET_OTA_ASSERT_DEVICE := p2a42,P2a42,p2c72,P2c72,kuntao,kuntao_row,p2,P2
 
 # Remove unnecessary app(s) for unofficial LineageOS builds.
 $(shell rm -rf packages/apps/CMUpdater)
