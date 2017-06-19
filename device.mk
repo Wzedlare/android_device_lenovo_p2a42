@@ -76,14 +76,18 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
+    cplay \
+    tinycap \
+    tinymix \
+    tinypcminfo \
+    tinyplay \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libqcompostprocbundle \
-    tinymix
+    libqcompostprocbundle
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
@@ -128,6 +132,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libbson \
     Snap
 
 # Camera configuration
@@ -156,6 +161,16 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
+
+# Filesystem
+    setup_fs \
+    libext2fs \
+    libext2_e2p \
+    libext2_uuid \
+    libext2_com_err \
+    libext2_blkid \
+    libextmedia_jni \
+    libminui
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -202,6 +217,7 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_PACKAGES += \
+    libmm-omxcore \
     libc2dcolorconvert
 
 PRODUCT_COPY_FILES += \
@@ -253,6 +269,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    rmnetcli \
     libcnefeatureconfig \
     librmnetctl \
     libxml2
@@ -291,7 +308,8 @@ PRODUCT_PACKAGES += \
     hostapd \
     dhcpcd.conf \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    hs20-osu-client
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/fstman.ini:system/etc/wifi/fstman.ini \
@@ -306,30 +324,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv_lenovo.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_lenovo.bin \
     $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary_lenovo.dat:system/etc/firmware/wlan/prima/WCNSS_wlan_dictionary_lenovo.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
-
-# Misc Binaries
-PRODUCT_PACKAGES += \
-    cplay \
-    hs20-osu-client \
-    rmnetcli \
-    setup_fs \
-    tinycap \
-    tinypcminfo \
-    tinyplay \
-    updater
-
-# Misc Libraries
-PRODUCT_PACKAGES += \
-    libext2fs \
-    libbson \
-    libminui \
-    libcurl \
-    libext2_e2p \
-    libext2_uuid \
-    libmm-omxcore \
-    libext2_com_err \
-    libext2_blkid \
-    libextmedia_jni
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
