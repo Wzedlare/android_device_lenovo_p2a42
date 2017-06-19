@@ -154,7 +154,7 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-   OneTeamDoze
+   LenovoDoze
 
 # Ebtables
 PRODUCT_PACKAGES += \
