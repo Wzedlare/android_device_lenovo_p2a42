@@ -1,2 +1,0 @@
-allow logd logd:capability { dac_override };
-allow logd logd:dir { getattr };

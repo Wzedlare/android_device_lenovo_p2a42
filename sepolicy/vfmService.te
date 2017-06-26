@@ -1,5 +1,0 @@
-# vfmService daemon
-type vfmService, domain;
-type vfmService_exec, exec_type, file_type;
-
-init_daemon_domain(vfmService)

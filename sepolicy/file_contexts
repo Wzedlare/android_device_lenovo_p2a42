@@ -1,24 +1,16 @@
-# Audio
-/dev/i2c_smartpa(/.*)?     		 	        u:object_r:audio_device:s0
+# Fpc Fingerprint
+/data/fpc(/.*)?					u:object_r:fpc_data_file:s0
+/dev/socket/fpce(/.*)?				u:object_r:fpce_socket:s0
+/sys/devices/soc/soc:fpc1020(/.*)?		u:object_r:fpc_sysfs:s0
 
-# Binaries
-/system/bin/fast_charger_sw 				u:object_r:fast_charger_sw_exec:s0
-/system/bin/vfmService					u:object_r:vfmService_exec:s0
+# Ir
+/dev/lirc[0-9]*					u:object_r:lirc_device:s0
 
-# OneKey & IDK why fastcharger needs
-/sys/devices/soc.0/gpio_keys.69(/.*)?			u:object_r:sysfs_fast_charger_sw:s0
+# Glove Mode
+/sys/class/tp_glove/tp_glove/glove_enable	u:object_r:proc_touchpanel:s0
 
-# Camera
-/data/cam_socket[12]                                    u:object_r:camera_socket:s0
+# Block devices
+/dev/block/bootdevice/by-name/persist		u:object_r:persist_block_device:s0
 
-# Fingerprint
-/data/validity(/.*)?					u:object_r:fingerprintd_data_file:s0
-
-# Partitions
-/dev/block/bootdevice/by-name/cache                     u:object_r:cache_block_device:s0
-
-# tfa9890
-/dev/i2c-4						u:object_r:audio_device:s0
-
-# NFC
-/dev/bcm2079x						u:object_r:nfc_device:s0
+# Data files
+/data/misc/netmgr/log\.txt			u:object_r:netmgrd_data_file:s0
