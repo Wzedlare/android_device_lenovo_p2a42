@@ -1,7 +1,9 @@
-# Fpc Fingerprint
+# Fingerprint
 /data/fpc(/.*)?					u:object_r:fpc_data_file:s0
 /dev/socket/fpce(/.*)?				u:object_r:fpce_socket:s0
 /sys/devices/soc/soc:fpc1020(/.*)?		u:object_r:fpc_sysfs:s0
+/system/bin/vfmService					u:object_r:vfmService_exec:s0
+/data/validity(/.*)?					u:object_r:fingerprintd_data_file:s0
 
 # Ir
 /dev/lirc[0-9]*					u:object_r:lirc_device:s0
@@ -14,3 +16,10 @@
 
 # Data files
 /data/misc/netmgr/log\.txt			u:object_r:netmgrd_data_file:s0
+
+# Audio
+/dev/i2c_smartpa(/.*)?     		 	        u:object_r:audio_device:s0
+/dev/i2c-4						u:object_r:audio_device:s0
+
+# NFC
+/dev/bcm2079x						u:object_r:nfc_device:s0

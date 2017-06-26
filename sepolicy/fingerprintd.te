@@ -7,4 +7,5 @@ allow fingerprintd firmware_file:file r_file_perms;
 allow fingerprintd uhid_device:chr_file rw_file_perms;
 allow fingerprintd fpc_data_file:dir rw_dir_perms;
 allow fingerprintd fpc_data_file:sock_file create_file_perms;
+allow fingerprintd vfmService:process { signull };
 set_prop(fingerprintd, system_prop)
